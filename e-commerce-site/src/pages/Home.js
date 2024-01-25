@@ -1,5 +1,7 @@
 import CategoryCard from "../components/CategoryCard";
 import ProductCard from "../components/ProductCard";
+import FeaturedPost from "../components/FeaturedPost";
+
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 
@@ -11,6 +13,14 @@ import kids from "../assests/category-card/kids.jpeg";
 import product from "../assests/product/example-product.jpeg";
 import carouselImg from "../assests/carousel-imgs/carousel-img1.jpeg";
 import hero2 from "../assests/hero-2/hero-2.png";
+import manWoman from "../assests/asian-woman-man-with-winter-clothes 1.png";
+import featuredPost1 from "../assests/featured-posts/featured-post1.jpeg";
+
+import {
+  eArrow,
+  getCustomRenderArrowFunction,
+  customRenderIndicatorFunction,
+} from "../utils/Carousel";
 
 export default function Home() {
   return (
@@ -20,30 +30,9 @@ export default function Home() {
           showThumbs={false}
           infiniteLoop={true}
           showStatus={false}
-          renderIndicator={(onClickHandler, isSelected, index, label) => {
-            const defStyle = {
-              backgroundColor: "white",
-              opacity: "50%",
-              cursor: "pointer",
-              width: "50px",
-              height: "10px",
-              display: "inline-block",
-            };
-            const style = isSelected
-              ? { ...defStyle, opacity: "100%" }
-              : { ...defStyle };
-            return (
-              <span
-                style={style}
-                onClick={onClickHandler}
-                value={index}
-                key={index}
-                role="button"
-                tabIndex={0}
-                aria-label={`${label} ${index + 1}`}
-              ></span>
-            );
-          }}
+          renderArrowPrev={getCustomRenderArrowFunction(eArrow.prev)}
+          renderArrowNext={getCustomRenderArrowFunction(eArrow.next)}
+          renderIndicator={customRenderIndicatorFunction}
         >
           <div className="relative aspect-[2/1] text-clr-light">
             <img className="img-absolute" src={carouselImg} alt="img" />
@@ -134,30 +123,9 @@ export default function Home() {
           showThumbs={false}
           infiniteLoop={true}
           showStatus={false}
-          renderIndicator={(onClickHandler, isSelected, index, label) => {
-            const defStyle = {
-              backgroundColor: "white",
-              opacity: "50%",
-              cursor: "pointer",
-              width: "50px",
-              height: "10px",
-              display: "inline-block",
-            };
-            const style = isSelected
-              ? { ...defStyle, opacity: "100%" }
-              : { ...defStyle };
-            return (
-              <span
-                style={style}
-                onClick={onClickHandler}
-                value={index}
-                key={index}
-                role="button"
-                tabIndex={0}
-                aria-label={`${label} ${index + 1}`}
-              ></span>
-            );
-          }}
+          renderArrowPrev={getCustomRenderArrowFunction(eArrow.prev)}
+          renderArrowNext={getCustomRenderArrowFunction(eArrow.next)}
+          renderIndicator={customRenderIndicatorFunction}
         >
           <div className="container-big bg-bgclr-secondary-1 text-clr-light aspect-[2/1] flex items-end">
             <div className="container-small max-h-[85%] flex flex-wrap justify-between gap-[1.875rem]">
@@ -216,6 +184,62 @@ export default function Home() {
             </div>
           </div>
         </Carousel>
+      </section>
+      <section className="max-w-[1248px] m-auto">
+        <div className="flex gap-x-[2rem]">
+          <div className="basis-[624px] grow-[9]">
+            <img src={manWoman} alt="img" />
+          </div>
+          <div className="basis-[484px] grow-[7] flex flex-col justify-center items-start">
+            <div className="font-bold flex flex-col items-start gap-y-[2.1875rem] justify-between">
+              <span className="text-clr-muted">SUMMER 2020</span>
+              <h2 className="text-[3.625rem] text-clr-dark text-left">
+                Part of the Neural Universe
+              </h2>
+              <span className="text-[1.25rem] w-[70%] text-left font-normal text-clr-second">
+                We know how large objects will act, but things on a small scale.
+              </span>
+              <div>
+                <Link
+                  className="inline-block btn-md text-[0.875rem] btn-success mr-[0.625rem]"
+                  to="#"
+                >
+                  BUY NOW
+                </Link>
+                <Link
+                  className="inline-block btn-md text-[0.875rem] btn-success-outline"
+                  to="#"
+                >
+                  READ MORE
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container-small py-[7rem]">
+        <span className="block mb-[0.625rem] font-bold text-[0.875rem] text-clr-primary">
+          Practice Advice
+        </span>
+        <h2 className="mb-[0.625rem] font-bold text-clr-dark text-[2.5rem]">
+          Featured Posts
+        </h2>
+        <p className="max-w-[44%] mx-auto mb-[5rem] text-clr-second text-[0.875rem]">
+          Problems trying to resolve the conflict between <br />
+          the two major realms of Classical physics: Newtonian mechanics{" "}
+        </p>
+        <div className="flex justify-between gap-x-[0.625rem] ">
+          {Array(3)
+            .fill(1)
+            .map((item, idx) => (
+              <FeaturedPost
+                key={idx}
+                className="base-[348px]"
+                urlImg={featuredPost1}
+              />
+            ))}
+        </div>
       </section>
     </>
   );

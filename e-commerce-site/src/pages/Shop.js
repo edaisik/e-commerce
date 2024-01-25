@@ -4,6 +4,7 @@ import ShopCard from "../components/ShopCard";
 
 import product from "../assests/product/example-product.jpeg";
 import imgShopCard1 from "../assests/Shop/shopCard1.jpeg";
+import Path from "../components/Path";
 
 export default function Shop() {
   return (
@@ -12,15 +13,7 @@ export default function Shop() {
         <section className="container-big m-auto pt-[2.375em] pb-[3em] px-[11em]">
           <div className="flex justify-between items-center mb-[3em]">
             <span className="text-[1.5rem] text-clr-dark font-bold">Shop</span>
-            <div className="flex items-center gap-x-[1rem]">
-              <span className="text-clr-dark text-[0.875rem] font-bold">
-                Home
-              </span>
-              <i className="text-clr-muted fa-solid fa-chevron-right"></i>
-              <span className="text-[0.875rem] text-clr-muted font-bold">
-                Shop
-              </span>
-            </div>
+            <Path />
           </div>
           <div className="flex justify-between gap-x-[1rem]">
             {Array(5)
@@ -63,13 +56,13 @@ export default function Shop() {
             </div>
           </div>
           <div className="my-[3rem] flex flex-wrap gap-y-[5rem] gap-x-[1.875rem]">
-            {Array(8)
+            {Array(12)
               .fill(1)
               .map((item, idx) => {
                 return (
                   <ProductCard
                     key={idx}
-                    className="basis-[239px]"
+                    className="basis-[200px]"
                     urlImg={product}
                   />
                 );
