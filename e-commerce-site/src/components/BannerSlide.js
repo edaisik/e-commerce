@@ -35,14 +35,14 @@ function BannerSlide({ data }) {
             <a href="#slide2" className="btn btn-circle bg-transparent">
               <FontAwesomeIcon
                 icon={faChevronLeft}
-                style={{ color: "#ffffff" }}
+                style={{ color: "#000000" }}
                 className="text-5xl"
               />
             </a>
             <a href="#slide2" className="btn btn-circle bg-transparent">
-            <FontAwesomeIcon
+              <FontAwesomeIcon
                 icon={faChevronRight}
-                style={{ color: "#ffffff" }}
+                style={{ color: "#000000" }}
                 className="text-5xl"
               />
             </a>
@@ -69,16 +69,16 @@ function BannerSlide({ data }) {
             </div>
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href="#slide1" className="btn btn-circle bg-transparent">
-              <FontAwesomeIcon
+                <FontAwesomeIcon
                   icon={faChevronLeft}
-                  style={{ color: "#ffffff" }}
+                  style={{ color: "#000000" }}
                   className="text-5xl"
                 />
               </a>
               <a href="#slide1" className="btn btn-circle bg-transparent">
-              <FontAwesomeIcon
+                <FontAwesomeIcon
                   icon={faChevronRight}
-                  style={{ color: "#ffffff" }}
+                  style={{ color: "#000000" }}
                   className="text-5xl"
                 />
               </a>
