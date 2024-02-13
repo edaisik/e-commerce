@@ -43,7 +43,7 @@ function Product({ data }) {
           <div>
             <div className="carousel w-full">
               <div id="product1" className="carousel-item relative w-full">
-                <img src={details.images.img1} className="w-full" alt=""/>
+                <img src={details.images.img1} className="w-full" alt="" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <a href="#product2" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
@@ -62,9 +62,8 @@ function Product({ data }) {
                   </a>
                 </div>
               </div>
-
               <div id="product2" className="carousel-item relative w-full">
-                <img src={details.images.img2} className="w-full" alt=""/>
+                <img src={details.images.img2} className="w-full" alt="" />
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                   <a href="#product1" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
@@ -73,7 +72,6 @@ function Product({ data }) {
                       className="text-5xl"
                     />
                   </a>
-
                   <a href="#product1" className="btn btn-circle bg-transparent">
                     <FontAwesomeIcon
                       icon={faChevronRight}
@@ -86,10 +84,10 @@ function Product({ data }) {
             </div>
             <div className="flex w-full py-5 gap-5">
               <a href="#product1" className="w-24 h-20">
-                <img src={details.images.img1} className="w-full" alt=""/>
+                <img src={details.images.img1} className="w-full" alt="" />
               </a>
               <a href="#product2" className="w-24 h-20">
-                <img src={details.images.img2} className="w-full" alt=""/>
+                <img src={details.images.img2} className="w-full" alt="" />
               </a>
             </div>
           </div>
@@ -118,7 +116,7 @@ function Product({ data }) {
             </div>
             <p>{details.description}</p>
             <hr />
-            <img src="/img/posts/product-colors.png" alt=""/>
+            <img src="/img/posts/product-colors.png" alt="" />
             <div>
               <button className="text-sm text-white border-0 border-solid rounded py-2 px-5 bg-secondary w-fit">
                 {details.button}
@@ -155,7 +153,7 @@ function Product({ data }) {
 
         <hr className="pb-4" />
         <div className="pt-6 flex justify-between">
-          <img src={description.img} alt=""/>
+          <img src={description.img} alt="" />
 
           <div className="flex flex-col gap-7 mx-7 w-1/3">
             <h5 className="text-2xl font-bold">{description.title1}</h5>
