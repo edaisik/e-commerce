@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import InnerHeader from "../components/layout/InnerHeader.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import Header from "../components/layout/Header.js";
 import TeamCard from "../components/TeamCard.js";
 import Footer from "../components/layout/Footer.js";
-import Trial from "../components/layout/Trial.js";
+import Trial from "../components/Trial.js";
 
 function Team({ data }) {
   const team = data.team;
@@ -12,7 +12,7 @@ function Team({ data }) {
 
   return (
     <div className="Team">
-      <InnerHeader data={data} />
+      <Header data={data} />
 
       <div>
         <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">
@@ -33,7 +33,9 @@ function Team({ data }) {
         </div>
         <div className="flex flex-col flex-wrap gap-[10px] max-h-[34rem] sm:max-h-fit sm:flex-row sm:justify-center sm:gap-1">
           {section.images.map((img, index) => {
-            return <img key={index} src={img} className="object-cover" alt=""/>;
+            return (
+              <img key={index} src={img} className="object-cover" alt="" />
+            );
           })}
         </div>
       </div>

@@ -242,6 +242,35 @@ export default function dataReducer() {
         copyright: "Made With Love By Finland All Right Reserved",
       },
 
+      login: {
+        header: {
+          subtitle: "Seamless Shopping Experience Awaits",
+          title: "Login to Your Account",
+          description:
+            "Access your personalized shopping haven and enjoy a tailored experience with easy login and secure authentication.",
+        },
+        email: {
+          label: "Email:",
+          placeholder: "Email *",
+          footnote: "Please enter your registered email address.",
+          errorMsg: {
+            required: "Email field cannot be empty.",
+          },
+        },
+        password: {
+          label: "Password:",
+          placeholder: "Password *",
+          footnote: "Enter your password.",
+          errorMsg: {
+            required: "Please enter your password.",
+          },
+        },
+        button: "Log In",
+        submission: {
+          fail: "Login failed. Please try again.",
+        },
+      },
+
       hero: {
         carousel: [
           {
@@ -283,12 +312,6 @@ export default function dataReducer() {
             },
           },
         },
-      },
-
-      innerheader: {
-        nav: ["Home", "Team", "Pricing", "Contact"],
-        login: "Login",
-        signup: "Become a member",
       },
 
       posts: {
@@ -770,7 +793,7 @@ export default function dataReducer() {
           footnote: "Set a password.",
           errorMsg: {
             required: "Password field cannot be empty.",
-            length: "Name must be at least 8 characters.",
+            length: "Password must be at least 8 characters.",
             upper: "Password must include at least one upper case character.",
             lower: "Password must include at least one lower case character.",
             special:
