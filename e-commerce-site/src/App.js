@@ -15,6 +15,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import axiosWithAuth from "./api/axiosWithAuth";
 import { setUserSuccess } from "./store/actions/userActions";
 import "./App.css";
+import { fetchCategories } from "./store/actions/productActions";
 
 function App() {
   const language = "en";
@@ -38,6 +39,7 @@ function App() {
           localStorage.removeItem("token");
         });
     }
+    dispatch(fetchCategories());
   }, []);
 
   return (
