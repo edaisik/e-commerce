@@ -31,6 +31,10 @@ function Header({ data }) {
   );
   const location = useLocation();
   const history = useHistory();
+
+  const womanCat = categories.filter((cat) => cat.gender === "k");
+  const manCat = categories.filter((cat) => cat.gender === "e");
+
   return (
     <div className="Header font-bold">
       <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6 sm:hidden">
@@ -98,9 +102,9 @@ function Header({ data }) {
               >
                 <ul>
                   <li className="text-black">{dropdownData.header1}</li>
-                  {categories.slice(0, 8).map((cat) => {
+                  {womanCat.map((cat, index) => {
                     return (
-                      <li>
+                      <li key={index}>
                         <Link to={`/shopping/${cat.code.slice(2)}`}>
                           {cat.title}
                         </Link>
@@ -110,9 +114,9 @@ function Header({ data }) {
                 </ul>
                 <ul>
                   <li className="text-black">{dropdownData.header2}</li>
-                  {categories.slice(8).map((cat) => {
+                  {manCat.map((cat, index) => {
                     return (
-                      <li>
+                      <li key={index}>
                         <Link to={`/shopping/${cat.code.slice(2)}`}>
                           {cat.title}
                         </Link>
