@@ -60,11 +60,11 @@ function App() {
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route path="/shopping">
-          <ProductList data={data} />
-        </Route>
-        <Route path="/shopping/:productID">
+        <Route path="/shopping/:category/:product-name-slug/:product-id">
           <Product data={data} />
+        </Route>
+        <Route path="/shopping/:category?">
+          <ProductList data={data} />
         </Route>
         <Route path="/signup">
           <SignUp data={data} />
