@@ -9,14 +9,18 @@ import { useEffect, useState } from "react";
 import { setProductList } from "../store/actions/productActions";
 import useQueryParams from "../hooks/useQueryParams";
 import Products from "./Products";
+import { useParams } from "react-router-dom";
 
 function Shop({ data }) {
   const products = useSelector((store) => store.product.products);
+  const categories = useSelector(
+    (store) => store.product.categories.categoryList
+  );
   const { totalProductCount } = products;
 
   const dispatch = useDispatch();
+  const { category } = useParams();
   const [filterParams, setFilterParams] = useState({
-    category: "",
     filter: "",
     sort: "",
   });
@@ -27,17 +31,15 @@ function Shop({ data }) {
     e.target.classList.add("bg-secondary");
     e.target.classList.add("text-white");
   };
-  const submitHandler = () => {
+  const submitHandler = (e) => {
+    e.preventDefault();
     setQueryParams(filterParams);
   };
 
   useEffect(() => {
-    dispatch(setProductList(queryParams));
-  }, []);
-
-  useEffect(() => {
-    dispatch(setProductList(queryParams));
-  }, [queryParams]);
+    const categoryId = categories.find((c) => c.code == category)?.id;
+    dispatch(setProductList({ ...queryParams, category: categoryId }));
+  }, [queryParams, category]);
 
   return (
     <div className="Shop">

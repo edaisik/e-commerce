@@ -1,20 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchCategories } from "../store/actions/productActions";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Categories({ data }) {
-  const dispatch = useDispatch();
+  const { search } = useLocation();
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
   categories.sort((a, b) => b.rating - a.rating);
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, []);
 
   return (
     <div className="Categories bg-info">
@@ -32,7 +26,7 @@ function Categories({ data }) {
             <Link
               className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden sm:max-w-full sm:max-h-full sm:aspect-square"
               key={cat.id}
-              to={`/shopping/${cat.code}`}
+              to={`/shopping/${cat.code}${search}`}
             >
               <img
                 src={cat.img}

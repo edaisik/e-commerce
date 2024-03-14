@@ -116,14 +116,21 @@ function LogIn({ data }) {
                 : "blue-button mx-auto flex gap-4 items-center bg-secondary-focus"
             }
           >
-            <span
+            {/* <span
               className={
                 user.fetchState === fetchStates.FETCHING ? "" : "hidden"
               }
             >
               {<Spinner className="text-white" />}
             </span>
-            <span>{button}</span>
+            <span>{button}</span> */}
+
+            <button
+              type="submit"
+              className="text-sm text-white bg-secondary py-2 px-3"
+            >
+              {button}
+            </button>
           </button>
         </form>
       </div>
