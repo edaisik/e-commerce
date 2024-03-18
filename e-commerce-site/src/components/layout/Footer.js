@@ -1,9 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
 function Footer({ data, inner }) {
@@ -14,9 +8,9 @@ function Footer({ data, inner }) {
         <div className="w-[70%] m-auto py-10 flex justify-between sm:flex-col sm:gap-4">
           <h1 className="text-2xl font-bold">{data.brand}</h1>
           <div className="text-secondary flex gap-5 sm:text-2xl">
-            <FontAwesomeIcon icon={faFacebook} />
-            <FontAwesomeIcon icon={faInstagram} />
-            <FontAwesomeIcon icon={faTwitter} />
+            <i className="fa-brands fa-facebook"></i>
+            <i className="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-twitter"></i>{" "}
           </div>
         </div>
         <div className="w-[70%] m-auto">{inner && <hr />}</div>
@@ -38,7 +32,6 @@ function Footer({ data, inner }) {
         <div>
           <h5 className="font-bold mb-5">{footer.contact.title}</h5>
           <div className="flex flex-wrap border-0 border-solid rounded-[5px] overflow-hidden">
-            {" "}
             <input
               type="email"
               placeholder={footer.contact.placeholder}
@@ -46,7 +39,7 @@ function Footer({ data, inner }) {
             />
             <button
               type="submit"
-              className="text-sm text-white bg-secondary py-2 px-3"
+              className="text-sm text-white bg-secondary flex-1 py-4 px-3"
             >
               {footer.contact.button}
             </button>
@@ -62,5 +55,4 @@ function Footer({ data, inner }) {
     </div>
   );
 }
-
 export default Footer;

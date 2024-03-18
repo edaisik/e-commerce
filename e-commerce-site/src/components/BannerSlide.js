@@ -1,8 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useHistory } from "react-router-dom";
@@ -33,18 +28,10 @@ function BannerSlide({ data }) {
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle bg-transparent">
-              <FontAwesomeIcon
-                icon={faChevronLeft}
-                style={{ color: "#000000" }}
-                className="text-5xl"
-              />
+              <i className="fa-solid fa-chevron-left text-5xl text-white"></i>
             </a>
             <a href="#slide2" className="btn btn-circle bg-transparent">
-              <FontAwesomeIcon
-                icon={faChevronRight}
-                style={{ color: "#000000" }}
-                className="text-5xl"
-              />
+              <i className="fa-solid fa-chevron-right text-5xl text-white"></i>
             </a>
           </div>
         </div>
@@ -69,18 +56,10 @@ function BannerSlide({ data }) {
             </div>
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href="#slide1" className="btn btn-circle bg-transparent">
-                <FontAwesomeIcon
-                  icon={faChevronLeft}
-                  style={{ color: "#000000" }}
-                  className="text-5xl"
-                />
+                <i className="fa-solid fa-chevron-left text-5xl text-white"></i>
               </a>
               <a href="#slide1" className="btn btn-circle bg-transparent">
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  style={{ color: "#000000" }}
-                  className="text-5xl"
-                />
+                <i className="fa-solid fa-chevron-right text-5xl text-white"></i>
               </a>
             </div>
           </div>

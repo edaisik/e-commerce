@@ -1,21 +1,15 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleRight,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+
 import PricingPlan from "../components/PricingPlan";
 import Clients from "../components/layout//Clients.js";
-import Trial from "../components/Trial.js";
+import Trial from "../components/Trial";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
-
 function Pricing({ data }) {
   const pricing = data.pricing;
   const { title, description, monthly, yearly, save, plans } =
     pricing.pricingplans;
   const faqs = pricing.faqs;
-
   return (
     <div className="Pricing">
       <Header data={data} />
@@ -26,16 +20,14 @@ function Pricing({ data }) {
         </h1>
         <nav className="text-sm flex items-center gap-4">
           <Link to="/">{pricing.history.prev}</Link>
-          <FontAwesomeIcon
-            icon={faAngleRight}
-            className="text-neutral text-base"
-          />
+
+          <i className="fa-solid fa-angle-right text-neutral text-base"></i>
+
           <Link to="/team" className="text-accent">
             {pricing.history.current}
           </Link>
         </nav>
       </div>
-
       <div className="bg-info  text-center flex flex-col justify-center gap-12 p-28 font-bold sm:px-11 sm:py-16">
         <div className="flex flex-col items-center">
           <h1 className="text-[2.5rem] leading-[3rem] font-bold pb-3">
@@ -62,12 +54,10 @@ function Pricing({ data }) {
           })}
         </div>
       </div>
-
       <div className="bg-info py-20">
         <h4 className="text-xl text-center sm:px-20">{pricing.clients}</h4>
         <Clients data={data.clients} />
       </div>
-
       <div className="py-20 flex flex-col gap-12">
         <div className="py-11 flex flex-col items-center gap-4">
           <h2 className="text-center text-[2.5rem] leading-[3rem] font-bold">
@@ -84,10 +74,7 @@ function Pricing({ data }) {
                 className="max-w-[45%] p-6 flex gap-5 sm:max-w-full"
                 key={index}
               >
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="text-secondary text-base sm:hidden"
-                />
+                <i className="fa-solid fa-chevron-right text-secondary text-base sm:hidden"></i>{" "}
                 <div>
                   <h5 className="font-bold text-base">{qa.q}</h5>
                   <p className="text-sm text-accent sm:py-4">{qa.a}</p>
@@ -100,12 +87,9 @@ function Pricing({ data }) {
           {faqs.footnote}
         </h4>
       </div>
-
       <Trial data={data.trial} />
-
       <Footer data={data} inner={true} />
     </div>
   );
 }
-
 export default Pricing;

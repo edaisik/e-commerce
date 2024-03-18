@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import Header from "../components/layout/Header.js";
 import TeamCard from "../components/TeamCard.js";
 import Footer from "../components/layout/Footer.js";
 import Trial from "../components/Trial.js";
-
 function Team({ data }) {
   const team = data.team;
   const { section, title, people } = team;
-
   return (
     <div className="Team">
       <Header data={data} />
-
       <div>
         <div className="p-12 font-bold flex flex-col gap-4 items-center sm:text-center">
           <h5 className="text-base text-accent">{section.subtitle}</h5>
@@ -22,10 +17,8 @@ function Team({ data }) {
           </h1>
           <nav className="text-sm flex items-center gap-4">
             <Link to="/">{section.history.prev}</Link>
-            <FontAwesomeIcon
-              icon={faAngleRight}
-              className="text-neutral text-base"
-            />
+
+            <i className="fa-solid fa-angle-right text-neutral text-base"></i>
             <Link to="/team" className="text-accent">
               {section.history.current}
             </Link>
@@ -39,7 +32,6 @@ function Team({ data }) {
           })}
         </div>
       </div>
-
       <div className="mx-48 py-28 sm:mx-8">
         <h2 className="text-center text-[2.5rem] leading-[3rem] font-bold mb-28">
           {title}
@@ -50,12 +42,9 @@ function Team({ data }) {
           })}
         </div>
       </div>
-
       <Trial data={data.trial} />
-
       <Footer data={data} inner={true} />
     </div>
   );
 }
-
 export default Team;

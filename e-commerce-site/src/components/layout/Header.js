@@ -1,66 +1,47 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDown,
-  faBars,
-  faCartShopping,
-  faEnvelope,
-  faHeart,
-  faMagnifyingGlass,
-  faPhone,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
 import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 function Header({ data }) {
   const infoData = data.hero.header.info;
   const navData = data.hero.header.nav;
   const dropdownData = data.hero.header.shopdropdown;
   const rightData = navData.rightside;
-
   const user = useSelector((store) => store.user.user);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
   const location = useLocation();
   const history = useHistory();
-
   const womanCat = categories.filter((cat) => cat.gender === "k");
   const manCat = categories.filter((cat) => cat.gender === "e");
-
   return (
     <div className="Header font-bold">
       <div className="header-info bg-primary text-white font-bold flex justify-between items-center py-4 px-6 sm:hidden">
         <div className="contact flex gap-[1.8rem]">
           <div className="phone flex items-center gap-[0.2rem]">
-            <FontAwesomeIcon icon={faPhone} />
+            <i className="fa-solid fa-phone"></i>
             <p>{infoData.phone}</p>
           </div>
           <div className="email flex items-center gap-[0.2rem]">
-            <FontAwesomeIcon icon={faEnvelope} />
+            <i className="fa-solid fa-envelope"></i>
             <p>{infoData.email}</p>
           </div>
         </div>
         <p className="header-message">{infoData.message}</p>
+
         <div className="follow-us flex gap-4">
           <p>{infoData.socialmedia}</p>
-          <FontAwesomeIcon icon={faInstagram} />
-          <FontAwesomeIcon icon={faYoutube} />
-          <FontAwesomeIcon icon={faFacebook} />
-          <FontAwesomeIcon icon={faTwitter} />
+
+          <i className="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-youtube"></i>
+          <i className="fa-brands fa-facebook"></i>
+          <i className="fa-brands fa-twitter"></i>
         </div>
       </div>
       <div className="header-nav flex justify-between items-center py-4 px-6 sm:flex-col">
         <div className="w-fit flex justify-between sm:w-full">
           <h1
-            className="text-2xl cursor-pointer"
+            className="text-2xl"
             onClick={() => {
               history.push("/");
             }}
@@ -70,16 +51,16 @@ function Header({ data }) {
           <div className="hidden sm:flex sm:items-center sm:gap-6">
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <i className="fa-solid fa-magnifying-glass"></i>
               </Link>
             )}
             {location.pathname === "/shopping" || (
               <Link to="/">
-                <FontAwesomeIcon icon={faCartShopping} />
+                <i className="fa-solid fa-cart-shopping"></i>
               </Link>
             )}
             <Link to="/">
-              <FontAwesomeIcon icon={faBars} />
+              <i className="fa-solid fa-bars"></i>
             </Link>
           </div>
         </div>
@@ -93,7 +74,7 @@ function Header({ data }) {
                   to="/shopping"
                 >
                   {navData.navlinks.shop}
-                  <FontAwesomeIcon icon={faAngleDown} />
+                  <i className="fa-solid fa-angle-down"></i>
                 </Link>
               </label>
               <div
@@ -145,12 +126,13 @@ function Header({ data }) {
                     user.email
                   )}?s=24`}
                   className="border-2 border-solid border-secondary-content rounded-[50%]"
+                  alt=""
                 />
                 <p>{user.name}</p>
               </div>
             ) : (
               <div className="flex items-center gap-3">
-                <FontAwesomeIcon icon={faUser} />
+                <i className="fa-solid fa-user"></i>
                 <span
                   onClick={() => {
                     history.push("/login");
@@ -168,14 +150,15 @@ function Header({ data }) {
                 </span>
               </div>
             )}
+
             <Link to="/">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <i className="fa-solid fa-magnifying-glass"></i>
             </Link>
             <Link to="/">
-              <FontAwesomeIcon icon={faCartShopping} />
+              <i className="fa-solid fa-cart-shopping"></i>
             </Link>
             <Link to="/">
-              <FontAwesomeIcon icon={faHeart} />
+              <i className="fa-regular fa-heart"></i>
             </Link>
           </div>
         </div>

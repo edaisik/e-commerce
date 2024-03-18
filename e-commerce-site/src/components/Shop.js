@@ -1,21 +1,14 @@
-import {
-  faListCheck,
-  faTableCellsLarge,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { setProductList } from "../store/actions/productActions";
 import useQueryParams from "../hooks/useQueryParams";
-import Products from "./Products";
 import { useParams } from "react-router-dom";
 import fetchStates from "../store/fetchStates";
 import Spinner from "../components/Spinner";
 import ProductCard from "./ProductCard";
 import { toast } from "react-toastify";
-
 function Shop({ data }) {
   const infScrollingParams = {
     limit: 36,
@@ -26,7 +19,6 @@ function Shop({ data }) {
     (store) => store.product.categories.categoryList
   );
   const { totalProductCount, fetchState, productList } = products;
-
   const dispatch = useDispatch();
   const { category } = useParams();
   const [hasMore, setHasMore] = useState(true);
@@ -37,12 +29,10 @@ function Shop({ data }) {
   });
   const [concProducts, setConcProducts] = useState([]);
   const [queryParams, setQueryParams] = useQueryParams();
-
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
-
   const nextInfScroll = () => {
     dispatch(
       setProductList({
@@ -59,7 +49,6 @@ function Shop({ data }) {
       setHasMore(false);
     }
   };
-
   useEffect(() => {
     const categoryId = categories.find(
       (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
@@ -74,15 +63,12 @@ function Shop({ data }) {
     if (fetchState === fetchStates.FETCH_FAILED)
       toast.error("Products failed to load. Please try again later.");
   }, [queryParams, category]);
-
   useEffect(() => {
     setConcProducts(productList);
   }, [productList]);
-
   useEffect(() => {
     setConcProducts(concProducts.concat(productList));
   }, [loadMore]);
-
   return (
     <div className="Shop">
       <form
@@ -95,14 +81,14 @@ function Shop({ data }) {
             " of all " +
             totalProductCount +
             " results"}
-        </p>{" "}
+        </p>
         <div className="flex gap-2 items-center">
           <p>{data.views}</p>
           <div className="border rounded-md p-2">
-            <FontAwesomeIcon icon={faTableCellsLarge} />
+            <i class="fa-solid fa-table-cells-large"></i>
           </div>
           <div className="border border-info rounded-md p-2">
-            <FontAwesomeIcon icon={faListCheck} />
+            <i class="fa-solid fa-list-check"></i>
           </div>
         </div>
         <input
@@ -130,7 +116,6 @@ function Shop({ data }) {
             <option value="rating:asc">{data.r_asc}</option>
             <option value="rating:desc">{data.r_desc}</option>
           </select>
-
           <button
             type="submit"
             className="text-white bg-secondary border-0 border-solid rounded-[5px] py-3 px-5"
