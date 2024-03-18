@@ -1,6 +1,8 @@
 import MD5 from "crypto-js/md5";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { removeFromCart } from "../../store/actions/shoppingCartActions";
+
 function Header({ data }) {
   const infoData = data.hero.header.info;
   const navData = data.hero.header.nav;
@@ -10,7 +12,8 @@ function Header({ data }) {
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
-  const location = useLocation();
+  const { cart } = useSelector((store) => store.shopping);
+  const { pathname, search } = useLocation();
   const history = useHistory();
   const womanCat = categories.filter((cat) => cat.gender === "k");
   const manCat = categories.filter((cat) => cat.gender === "e");
@@ -49,12 +52,12 @@ function Header({ data }) {
             {data.brand}
           </h1>
           <div className="hidden sm:flex sm:items-center sm:gap-6">
-            {location.pathname === "/shopping" || (
+            {pathname === "/shopping" || (
               <Link to="/">
                 <i className="fa-solid fa-magnifying-glass"></i>
               </Link>
             )}
-            {location.pathname === "/shopping" || (
+            {pathname === "/shopping" || (
               <Link to="/">
                 <i className="fa-solid fa-cart-shopping"></i>
               </Link>
@@ -77,34 +80,38 @@ function Header({ data }) {
                   <i className="fa-solid fa-angle-down"></i>
                 </Link>
               </label>
-              <div
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-4 shadow-xl bg-info rounded-box w-52 flex gap-4"
-              >
-                <ul>
-                  <li className="text-black">{dropdownData.header1}</li>
-                  {womanCat.map((cat, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to={`/shopping/${cat.code.slice(2)}`}>
-                          {cat.title}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <ul>
-                  <li className="text-black">{dropdownData.header2}</li>
-                  {manCat.map((cat, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to={`/shopping/${cat.code.slice(2)}`}>
-                          {cat.title}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+              <div tabIndex={0} className="dropdown-content z-[1] menu">
+                <div className="p-4 shadow-xl bg-info rounded-box w-fit flex gap-4">
+                  <ul>
+                    <li className="text-black">{dropdownData.header1}</li>
+                    {womanCat.map((cat, index) => {
+                      return (
+                        <li key={index}>
+                          <Link
+                            to={`/shopping/${cat.code.slice(
+                              0,
+                              1
+                            )}-${cat.code.slice(2)}${search}`}
+                          >
+                            {cat.title}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <ul>
+                    <li className="text-black">{dropdownData.header2}</li>
+                    {manCat.map((cat, index) => {
+                      return (
+                        <li key={index}>
+                          <Link to={`/shopping/${cat.code.slice(2)}`}>
+                            {cat.title}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
             </div>
             <Link to="/about">{navData.navlinks.about}</Link>
@@ -114,7 +121,7 @@ function Header({ data }) {
           </nav>
           <div
             className={
-              location.pathname === "/shopping"
+              pathname === "/shopping"
                 ? "nav-right-side text-secondary flex gap-[1rem] items-center sm:flex-col sm:text-3xl sm:items-center sm:gap-[1.3rem]"
                 : "nav-right-side text-secondary flex gap-[1rem] items-center sm:hidden"
             }
@@ -154,9 +161,71 @@ function Header({ data }) {
             <Link to="/">
               <i className="fa-solid fa-magnifying-glass"></i>
             </Link>
-            <Link to="/">
-              <i className="fa-solid fa-cart-shopping"></i>
-            </Link>
+            <div className="dropdown dropdown-hover">
+              <label tabIndex={0}>
+                <Link to="#">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </Link>
+              </label>
+
+              <div
+                tabIndex={0}
+                className="dropdown-content min-w-[20rem] z-[1] right-[1px] menu p-4 shadow-xl bg-info rounded-box"
+              >
+                <ul className="w-fit">
+                  <h2 className="text-black">{`My Cart (${cart.reduce(
+                    (sum, product) => {
+                      return sum + product.count;
+                    },
+                    0
+                  )} Products)`}</h2>
+                  {cart.map((item, index) => {
+                    const { product, count } = item;
+                    return (
+                      <li key={index}>
+                        <div className="flex gap-4 justify-between">
+                          <div className="flex gap-4 h-fit">
+                            <img
+                              src={product.images[0].url}
+                              className="h-16 object-cover" alt=""
+                            />
+
+                            <div className="flex flex-col text-primary">
+                              <h3>{product.name}</h3>
+                              <p className="font-normal">Amount: {count}</p>
+                              <p className="text-success">
+                                {product.price * count} ₺
+                              </p>
+                            </div>
+                          </div>
+                          {/*  <i
+                            class="fa-solid fa-trash-can text-error"
+                            onClick={() => {
+                              removeFromCart(product.id);
+                            }}
+                          ></i> */}
+                        </div>
+                        <hr />
+                      </li>
+                    );
+                  })}
+                  {cart.length ? (
+                    <div className="flex gap-2 justify-between">
+                      <button className="border border-secondary rounded-md py-2 px-4">
+                        Go to Basket
+                      </button>
+                      <button className="border border-secondary rounded-md py-2 px-4 bg-secondary text-white">
+                        Confirm Order
+                      </button>
+                    </div>
+                  ) : (
+                    <p className="pt-3 text-primary font-normal">
+                      Your basket is empty.
+                    </p>
+                  )}
+                </ul>
+              </div>
+            </div>
             <Link to="/">
               <i className="fa-regular fa-heart"></i>
             </Link>

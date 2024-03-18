@@ -23,11 +23,15 @@ function Categories({ data }) {
             <Link
               className="CategoryCard relative max-h-56 max-w-[18%] overflow-hidden sm:max-w-full sm:max-h-full sm:aspect-square"
               key={cat.id}
-              to={`/shopping/${cat.code.slice(0, 1)}-${cat.code.slice(
+              to={`/shopping/${cat.code.slice(0, 1)}/${cat.code.slice(
                 2
               )}${search}`}
             >
-              <img src={cat.img} className="object-cover h-full w-full" alt=""/>
+              <img
+                src={cat.img}
+                className="object-cover h-full w-full"
+                alt=""
+              />
               <div className="CategoryCardFilter bg-[#21212140] w-full h-full absolute top-0 right-0"></div>
               <div className="w-full h-full absolute top-0 right-0 text-white flex flex-col justify-center items-center gap-2">
                 <h6 className="font-bold">{cat.title}</h6>

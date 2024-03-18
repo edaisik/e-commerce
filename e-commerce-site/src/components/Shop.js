@@ -1,74 +1,74 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { setProductList } from "../store/actions/productActions";
-import useQueryParams from "../hooks/useQueryParams";
-import { useParams } from "react-router-dom";
+import { addProducts, setProductList } from "../store/actions/productActions";
 import fetchStates from "../store/fetchStates";
+import useQueryParams from "../hooks/useQueryParams";
 import Spinner from "../components/Spinner";
 import ProductCard from "./ProductCard";
-import { toast } from "react-toastify";
 function Shop({ data }) {
-  const infScrollingParams = {
-    limit: 36,
-    offset: 36,
-  };
   const products = useSelector((store) => store.product.products);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
   const { totalProductCount, fetchState, productList } = products;
   const dispatch = useDispatch();
-  const { category } = useParams();
+  const { sex, category } = useParams();
+  const history = useHistory();
+  const { search, pathname } = useLocation();
   const [hasMore, setHasMore] = useState(true);
-  const [loadMore, setLoadMore] = useState(true);
+  const [offset, setOffset] = useState(0);
   const [filterParams, setFilterParams] = useState({
     filter: "",
     sort: "",
   });
-  const [concProducts, setConcProducts] = useState([]);
   const [queryParams, setQueryParams] = useQueryParams();
+  const infScrollingParams = {
+    limit: 36,
+    offset: offset,
+  };
+  const categoryId = categories.find((c) => c.code == `${sex}:${category}`)?.id;
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
   const nextInfScroll = () => {
     dispatch(
-      setProductList({
-        ...queryParams,
-        limit: infScrollingParams.limit,
-        offset: infScrollingParams.offset,
-      })
-    );
-    setLoadMore(!loadMore);
-    if (
-      totalProductCount &&
-      productList.length + infScrollingParams.offset > totalProductCount
-    ) {
-      setHasMore(false);
-    }
-  };
-  useEffect(() => {
-    const categoryId = categories.find(
-      (c) => c.code == `${category?.slice(0, 1)}:${category?.slice(2)}`
-    )?.id;
-    dispatch(
-      setProductList({
+      addProducts({
         ...queryParams,
         ...infScrollingParams,
         category: categoryId,
       })
     );
+    setOffset(offset + 36);
+  };
+  useEffect(() => {
+    dispatch(
+      setProductList({
+        ...queryParams,
+        limit: infScrollingParams.limit,
+        offset: 0,
+        category: categoryId,
+      })
+    );
+    setHasMore(true);
+    setOffset(36);
+  }, [queryParams, category]);
+
+  useEffect(() => {
     if (fetchState === fetchStates.FETCH_FAILED)
       toast.error("Products failed to load. Please try again later.");
-  }, [queryParams, category]);
+  }, [fetchState]);
+
   useEffect(() => {
-    setConcProducts(productList);
+    if (totalProductCount && productList.length === totalProductCount) {
+      setHasMore(false);
+    }
   }, [productList]);
-  useEffect(() => {
-    setConcProducts(concProducts.concat(productList));
-  }, [loadMore]);
+
   return (
     <div className="Shop">
       <form
@@ -77,7 +77,7 @@ function Shop({ data }) {
       >
         <p>
           {"Showing " +
-            concProducts.length +
+            productList.length +
             " of all " +
             totalProductCount +
             " results"}
@@ -85,10 +85,10 @@ function Shop({ data }) {
         <div className="flex gap-2 items-center">
           <p>{data.views}</p>
           <div className="border rounded-md p-2">
-            <i class="fa-solid fa-table-cells-large"></i>
+            <i className="fa-solid fa-table-cells-large"></i>
           </div>
           <div className="border border-info rounded-md p-2">
-            <i class="fa-solid fa-list-check"></i>
+            <i className="fa-solid fa-list-check"></i>
           </div>
         </div>
         <input
@@ -129,16 +129,39 @@ function Shop({ data }) {
           dataLength={productList.length}
           next={nextInfScroll}
           hasMore={hasMore}
+          scrollThreshold="449px"
           loader={<Spinner />}
           endMessage={
             <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
+              <b>You have seen it all</b>
             </p>
           }
+          className="infiniteScroll"
         >
           <div className="Products flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
-            {concProducts.map((card, index) => {
-              return <ProductCard data={card} key={index} />;
+            {productList.map((product, index) => {
+              const catCode = categories.find(
+                (c) => c.id == product["category_id"]
+              )?.code;
+              const nameSlug = product.name.toLowerCase().replaceAll(" ", "-");
+              return (
+                <div
+                  key={index}
+                  onClick={() => {
+                    history.push(
+                      `/shopping/${catCode?.slice(0, 1)}/${catCode?.slice(2)}/${
+                        product.id
+                      }/${nameSlug}`,
+                      {
+                        pathname: pathname,
+                        search: search,
+                      }
+                    );
+                  }}
+                >
+                  <ProductCard data={product} />
+                </div>
+              );
             })}
           </div>
         </InfiniteScroll>
