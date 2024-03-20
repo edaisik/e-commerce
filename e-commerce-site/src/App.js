@@ -11,11 +11,12 @@ import Contact from "./pages/Contact";
 import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
+import Cart from "./pages/Cart";
 import useLocalStorage from "./hooks/useLocalStorage";
 import axiosWithAuth from "./api/axiosWithAuth";
 import { setUserSuccess } from "./store/actions/userActions";
-import "./App.css";
 import { fetchCategories } from "./store/actions/productActions";
+import "./App.css";
 
 function App() {
   const language = "en";
@@ -51,6 +52,9 @@ function App() {
         <Route path="/about">
           <About data={data} />
         </Route>
+        <Route path="/cart">
+          <Cart data={data} />
+        </Route>
         <Route path="/contact">
           <Contact data={data} />
         </Route>
@@ -74,7 +78,7 @@ function App() {
         </Route>
       </Switch>
       <ToastContainer
-        position="top-right"
+        position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
