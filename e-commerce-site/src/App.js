@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import About from "./pages/About";
@@ -12,6 +12,8 @@ import Product from "./pages/Product";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
+import PrivateRoute from "./components/routes/PrivateRoute";
 import useLocalStorage from "./hooks/useLocalStorage";
 import axiosWithAuth from "./api/axiosWithAuth";
 import { setUserSuccess } from "./store/actions/userActions";
@@ -61,6 +63,11 @@ function App() {
         <Route path="/login">
           <LogIn data={data} />
         </Route>
+        <PrivateRoute
+          path="/order"
+          component={Order}
+          isAuthenticated={!!token}
+        />
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
