@@ -21,7 +21,6 @@ const setUserFailure = (error) => ({
 export const setUser = (userData) => {
   return (dispatch) => {
     dispatch(setUserRequest());
-
     axiosInstance
       .post("/login", userData)
       .then((response) => {

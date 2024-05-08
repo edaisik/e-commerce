@@ -3,9 +3,11 @@ import Footer from "../components/layout/Footer.js";
 
 function Contact({ data }) {
   const { section1, section2, section3 } = data.contact;
+
   return (
     <div className="Contact">
       <Header data={data} />
+
       <div className="pt-28 w-[73%] mx-auto flex sm:w-full sm:flex-col sm:px-8 sm:text-center sm:gap-10">
         <div className="flex flex-col gap-9 font-bold sm:items-center">
           <h5 className="text-sm">{section1.subtitle}</h5>
@@ -29,9 +31,9 @@ function Contact({ data }) {
         <img
           src={section1.img}
           className="-translate-y-24 translate-x-32 sm:translate-x-0 sm:translate-y-0"
-          alt=""
         />
       </div>
+
       <div className="pb-20 flex flex-col items-center sm:my-16 sm:mx-10">
         <div className="w-2/5 mb-20 font-bold text-center flex flex-col gap-2 sm:w-full sm:">
           <h5 className="text-sm">{section2.subtitle}</h5>
@@ -75,8 +77,10 @@ function Contact({ data }) {
           {section3.button}
         </button>
       </div>
+
       <Footer data={data} inner={true} />
     </div>
   );
 }
+
 export default Contact;

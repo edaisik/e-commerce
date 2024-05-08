@@ -264,7 +264,6 @@ export default function dataReducer() {
           prev: "Home",
           current: "Pricing",
         },
-
         pricingplans: {
           title: "Pricing",
           description:
@@ -326,7 +325,6 @@ export default function dataReducer() {
             },
           ],
         },
-
         clients: "Trusted By Over 4000 Big Companies",
         faqs: {
           title: "Pricing FAQs",
@@ -507,8 +505,8 @@ export default function dataReducer() {
           images: [
             "/img/team/banner/main.png",
             "/img/team/banner/no1.png",
-            "/img/team/banner/no3.png",
             "/img/team/banner/no2.png",
+            "/img/team/banner/no3.png",
             "/img/team/banner/no4.png",
           ],
         },

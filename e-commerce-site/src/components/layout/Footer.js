@@ -55,4 +55,5 @@ function Footer({ data, inner }) {
     </div>
   );
 }
+
 export default Footer;

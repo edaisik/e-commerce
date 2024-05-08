@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
+
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
 import About from "./pages/About";
@@ -18,11 +19,13 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import axiosWithAuth from "./api/axiosWithAuth";
 import { setUserSuccess } from "./store/actions/userActions";
 import { fetchCategories } from "./store/actions/productActions";
+
 import "./App.css";
 
 function App() {
   const language = "en";
   //const language = useSelector(store => store.global.language);
+
   const data = useSelector((store) => store.data[language]);
   const user = useSelector((store) => store.user);
 
@@ -71,7 +74,7 @@ function App() {
         <Route path="/pricing">
           <Pricing data={data} />
         </Route>
-        <Route path="/shopping/:sex/:productID/:productNameSlug">
+        <Route path="/shopping/:sex/:category/:productID/:productNameSlug">
           <Product data={data} />
         </Route>
         <Route path="/shopping/:sex?/:category?">

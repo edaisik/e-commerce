@@ -32,4 +32,5 @@ function PricingPlan({ data, index }) {
     </div>
   );
 }
+
 export default PricingPlan;

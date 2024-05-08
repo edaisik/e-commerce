@@ -13,6 +13,7 @@ function useQueryParams() {
   const { search, pathname } = useLocation();
   const history = useHistory();
   const searchParams = new URLSearchParams(search);
+
   const queryParams = React.useMemo(
     () => paramsToObject(searchParams),
     [search]

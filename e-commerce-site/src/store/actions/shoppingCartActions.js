@@ -29,7 +29,6 @@ export const setCheckStatus = (productID, isChecked) => ({
   type: SET_CHECK_STATUS,
   payload: { productID, isChecked },
 });
-
 export const setPaymentInfo = (paymentInfo) => ({
   type: SET_PAYMENT_INFO,
   payload: paymentInfo,

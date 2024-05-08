@@ -57,7 +57,6 @@ function About({ data }) {
         </div>
         <img
           src="/img/about/banner.png"
-          alt=""
           className="translate-x-32 translate-y-3 sm:translate-x-0 sm:translate-y-0"
         />
       </div>
@@ -72,7 +71,7 @@ function About({ data }) {
           </h3>
           <p className="text-sm sm:px-8 sm:text-center">
             Problems trying to resolve the conflict between the two major realms
-            of Classical physics: Newtonian mechanics{" "}
+            of Classical physics: Newtonian mechanics
           </p>
         </div>
       </div>
@@ -91,7 +90,6 @@ function About({ data }) {
       <div className="my-28 w-fit mx-auto sm:mx-14 sm:border sm:border-solid sm:border-transparent sm:rounded-2xl sm:overflow-hidden">
         <img
           src="/img/about/videocard.png"
-          alt=""
           className="sm:w-full sm:aspect-square sm:object-cover"
         />
       </div>
@@ -117,31 +115,32 @@ function About({ data }) {
           </h2>
           <p className="text-sm text-accent text-center w-1/3 sm:w-full">
             Problems trying to resolve the conflict between the two major realms
-            of Classical physics: Newtonian mechanics{" "}
+            of Classical physics: Newtonian mechanics
           </p>
         </div>
         <Clients />
       </div>
 
-      <div className="flex border-2 border-solid border-primary-focus bg-[#2A7CC7] ">
+      <div className="flex border-2 border-solid border-primary-focus">
         <div className="px-48 flex flex-col justify-center gap-6 bg-primary-focus text-white sm:px-16 sm:py-24 sm:text-center">
           <h5 className="text-base font-bold">WORK WITH US</h5>
-          <h1 className="text-[2.5rem] leading-[3rem] font-bold sm:text-4xl">
+          <h1 className="text-[1.5rem] leading-[3rem] font-bold sm:text-4xl">
             Now Let’s Grow Yours
           </h1>
           <p className="text-sm">
             The gradual accumulation of information about atomic and small-scale
             behavior during the first quarter of the 20th
-          </p>{" "}
+          </p>
           <button className="border border-solid border-white rounded py-4 px-10 w-fit sm:mx-auto">
-            Button{" "}
+            Button
           </button>
         </div>
-        <img src="/img/about/work.png" className="sm:hidden" alt="" />
+        <img src="/img/about/work.png" className="sm:hidden" />
       </div>
 
       <Footer data={data} inner={true} />
     </div>
   );
 }
+
 export default About;

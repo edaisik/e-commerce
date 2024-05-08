@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import Header from "../components/layout/Header";
 import {
   clearCart,
@@ -63,7 +64,7 @@ function Cart() {
                       />
                       <img
                         src={product.images[0].url}
-                        className="h-16 object-cover" alt=""
+                        className="h-16 object-cover"
                       />
 
                       <h4 className="w-[30%]">{product.name}</h4>
@@ -105,7 +106,7 @@ function Cart() {
               })}
             </div>
             <div className="w-[30%] flex flex-col gap-4">
-            <button
+              <button
                 className="border border-solid border-secondary rounded-md py-3 w-full flex gap-2 justify-center font-bold bg-secondary text-white"
                 onClick={(e) => {
                   history.push("/order");

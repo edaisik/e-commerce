@@ -3,7 +3,7 @@ function Post({ data }) {
     <div className="Post flex sm:flex-col sm:shadow-md">
       <img
         src={data.img}
-        className="sm:aspect-square sm:w-full sm:align-bottom" alt=""
+        className="sm:aspect-square sm:w-full sm:align-bottom"
       />
       <div className="text-content p-6 pb-9 flex flex-col justify-between sm:gap-2">
         <div className="first-line flex justify-between">
@@ -23,7 +23,7 @@ function Post({ data }) {
           <span className="text-neutral">{data.oldsuccess}</span>
           <span className="text-success">{data.newsuccess}</span>
         </div>
-        <img src={data.colors} className="w-1/3" alt=""/>
+        <img src={data.colors} className="w-1/3" />
         <div className="text-xs flex justify-between">
           <div>
             <i className="fa-regular fa-clock text-secondary"></i>
@@ -48,4 +48,5 @@ function Post({ data }) {
     </div>
   );
 }
+
 export default Post;

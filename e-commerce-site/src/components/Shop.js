@@ -9,12 +9,14 @@ import fetchStates from "../store/fetchStates";
 import useQueryParams from "../hooks/useQueryParams";
 import Spinner from "../components/Spinner";
 import ProductCard from "./ProductCard";
+
 function Shop({ data }) {
   const products = useSelector((store) => store.product.products);
   const categories = useSelector(
     (store) => store.product.categories.categoryList
   );
   const { totalProductCount, fetchState, productList } = products;
+
   const dispatch = useDispatch();
   const { sex, category } = useParams();
   const history = useHistory();
@@ -26,15 +28,19 @@ function Shop({ data }) {
     sort: "",
   });
   const [queryParams, setQueryParams] = useQueryParams();
+
   const infScrollingParams = {
     limit: 36,
     offset: offset,
   };
+
   const categoryId = categories.find((c) => c.code == `${sex}:${category}`)?.id;
+
   const submitHandler = (e) => {
     e.preventDefault();
     setQueryParams(filterParams);
   };
+
   const nextInfScroll = () => {
     dispatch(
       addProducts({
@@ -45,6 +51,7 @@ function Shop({ data }) {
     );
     setOffset(offset + 36);
   };
+
   useEffect(() => {
     dispatch(
       setProductList({
@@ -124,6 +131,7 @@ function Shop({ data }) {
           </button>
         </div>
       </form>
+
       {fetchState === fetchStates.FETCHED && (
         <InfiniteScroll
           dataLength={productList.length}
@@ -170,4 +178,5 @@ function Shop({ data }) {
     </div>
   );
 }
+
 export default Shop;

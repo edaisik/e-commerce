@@ -3,7 +3,6 @@ import {
   SET_USER_REQUEST,
   SET_USER_SUCCESS,
 } from "../actions/userActions";
-
 import fetchStates from "../fetchStates";
 
 const initialState = {
@@ -37,4 +36,5 @@ const userReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default userReducer;

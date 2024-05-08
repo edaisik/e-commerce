@@ -31,4 +31,5 @@ function Features({ data }) {
     </div>
   );
 }
+
 export default Features;

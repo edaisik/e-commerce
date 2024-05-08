@@ -21,4 +21,5 @@ function Trial({ data }) {
     </div>
   );
 }
+
 export default Trial;

@@ -9,17 +9,15 @@ function Products({ data }) {
 
   if (fetchState === fetchStates.FETCH_FAILED) {
     toast.error("Fetch failed. Try again");
-
     return <div className="Products"></div>;
   } else if (fetchState === fetchStates.FETCHED) {
     return (
       <div className="Products flex flex-wrap justify-center gap-7 w-3/4 mx-auto sm:flex-col sm:items-center sm:gap-4">
-       {productList.map((card, index) => {
+        {productList.map((card, index) => {
           return <ProductCard data={card} key={index} />;
         })}
       </div>
     );
-  
   }
 }
 

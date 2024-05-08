@@ -3,7 +3,6 @@ import {
   FETCH_ROLES_REQUEST,
   FETCH_ROLES_SUCCESS,
 } from "../actions/rolesActions";
-
 import fetchStates from "../fetchStates";
 
 const initialState = {
@@ -37,4 +36,5 @@ const rolesReducer = (state = initialState, action) => {
       return state;
   }
 };
+
 export default rolesReducer;

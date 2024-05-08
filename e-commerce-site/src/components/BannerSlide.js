@@ -1,6 +1,7 @@
 import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useHistory } from "react-router-dom";
+
 function BannerSlide({ data }) {
   const history = useHistory();
   return (
@@ -24,7 +25,7 @@ function BannerSlide({ data }) {
                 {data[0].button}
               </button>
             </div>
-            <img src={data[0].img} className="object-contain h-full" alt="" />
+            <img src={data[0].img} className="object-contain h-full" />
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle bg-transparent">
@@ -52,7 +53,7 @@ function BannerSlide({ data }) {
               </button>
             </div>
             <div className="slide-img w-[38%] right-0">
-              <img src={data[1].img} alt="" />
+              <img src={data[1].img} />
             </div>
             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
               <a href="#slide1" className="btn btn-circle bg-transparent">
@@ -68,4 +69,5 @@ function BannerSlide({ data }) {
     </div>
   );
 }
+
 export default BannerSlide;

@@ -5,11 +5,13 @@ import Clients from "../components/layout//Clients.js";
 import Trial from "../components/Trial";
 import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
+
 function Pricing({ data }) {
   const pricing = data.pricing;
   const { title, description, monthly, yearly, save, plans } =
     pricing.pricingplans;
   const faqs = pricing.faqs;
+
   return (
     <div className="Pricing">
       <Header data={data} />
@@ -20,7 +22,6 @@ function Pricing({ data }) {
         </h1>
         <nav className="text-sm flex items-center gap-4">
           <Link to="/">{pricing.history.prev}</Link>
-
           <i className="fa-solid fa-angle-right text-neutral text-base"></i>
 
           <Link to="/team" className="text-accent">
@@ -28,6 +29,7 @@ function Pricing({ data }) {
           </Link>
         </nav>
       </div>
+
       <div className="bg-info  text-center flex flex-col justify-center gap-12 p-28 font-bold sm:px-11 sm:py-16">
         <div className="flex flex-col items-center">
           <h1 className="text-[2.5rem] leading-[3rem] font-bold pb-3">
@@ -54,10 +56,12 @@ function Pricing({ data }) {
           })}
         </div>
       </div>
+
       <div className="bg-info py-20">
         <h4 className="text-xl text-center sm:px-20">{pricing.clients}</h4>
         <Clients data={data.clients} />
       </div>
+
       <div className="py-20 flex flex-col gap-12">
         <div className="py-11 flex flex-col items-center gap-4">
           <h2 className="text-center text-[2.5rem] leading-[3rem] font-bold">
@@ -87,9 +91,12 @@ function Pricing({ data }) {
           {faqs.footnote}
         </h4>
       </div>
+
       <Trial data={data.trial} />
+
       <Footer data={data} inner={true} />
     </div>
   );
 }
+
 export default Pricing;

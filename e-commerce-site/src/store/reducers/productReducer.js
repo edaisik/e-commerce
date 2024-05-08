@@ -12,7 +12,6 @@ const initialState = {
     fetchState: fetchStates.NOT_FETCHED,
     error: "",
   },
-
   categories: {
     categoryList: [],
     fetchState: fetchStates.NOT_FETCHED,
